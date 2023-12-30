@@ -1,6 +1,6 @@
 /*
 DESCRIPTION:
-    Given two arrays a and b write a function comp(a, b) (orcompSame(a, b)) that checks whether the two arrays have the "same" elements, with the same multiplicities (the multiplicity of a member is the number of times it appears). "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.
+    Given two arrays a and b write a function comp(a, b) (or compSame(a, b)) that checks whether the two arrays have the "same" elements, with the same multiplicities (the multiplicity of a member is the number of times it appears). "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.
 
     Examples
 Valid arrays
@@ -28,5 +28,17 @@ If a or b are nil (or null or None, depending on the language), the problem does
 
 // SOLUTION:
 
+function compSame(a, b) {
+    if (a.length !== b.length) return false
+    const squareArray = a.map((item) => item ** 2)
+
+    const set1 = new Set(squareArray)
+
+    return squareArray.length === b.length && b.every(value => set1.has(value))
 
 
+}
+
+a = [121, 144, 19, 161, 19, 144, 19, 11]
+b = [121, 14641, 20736, 361, 25921, 361, 20736, 361]
+console.log('test: ', compSame(a, b))
